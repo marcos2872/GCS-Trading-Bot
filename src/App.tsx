@@ -490,7 +490,7 @@ const TradingBotDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen min-w-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <div className="bg-white text-black shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
