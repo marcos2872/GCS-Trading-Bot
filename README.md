@@ -1,8 +1,39 @@
 # 🚀 GCS Trading Bot Dashboard
 
-Um dashboard moderno e responsivo para monitoramento e controle de bots de trading de criptomoedas, construído com React, TypeScript e Tailwind CSS.
+<div align="center">
+  <img src="/vite.svg" alt="GCS Trading Bot" width="120" height="120">
 
-![Trading Bot Dashboard]()
+  **Um dashboard moderno e responsivo para monitoramento e controle de bots de trading de criptomoedas**
+
+  *Construído com React, TypeScript e Tailwind CSS*
+
+  [![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)](https://reactjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1-06b6d4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+  [![Vite](https://img.shields.io/badge/Vite-7.0-646cff?style=flat-square&logo=vite)](https://vitejs.dev/)
+</div>
+
+---
+
+## 📸 Preview da Aplicação
+
+### Dashboard Principal
+![Dashboard Overview](./public/1.png)
+*Visão geral com métricas em tempo real e status do bot*
+
+### Painel de Trading
+![Trading Panel](./public/2.png)
+*Controles de trading e histórico de operações*
+
+### Analytics ML
+![ML Analytics](./public/3.png)
+*Performance e métricas do modelo de Machine Learning*
+
+### Settings
+![ML Analytics](./public/4.png)
+*Configurações*
+
+> **Nota**: Para adicionar suas próprias screenshots, salve as imagens na pasta `public/` ou crie uma pasta `docs/images/` no seu repositório.
 
 ## ✨ Funcionalidades
 
@@ -109,16 +140,41 @@ yarn preview
 ## 🎨 Design System
 
 ### Cores Principais
-- **Primary**: Blue (#3B82F6)
-- **Success**: Green (#10B981)
-- **Warning**: Yellow (#F59E0B)
-- **Danger**: Red (#EF4444)
-- **Background**: Gray (#F3F4F6)
+- **Primary**: Blue (#3B82F6) ![#3B82F6](https://via.placeholder.com/15/3B82F6/000000?text=+)
+- **Success**: Green (#10B981) ![#10B981](https://via.placeholder.com/15/10B981/000000?text=+)
+- **Warning**: Yellow (#F59E0B) ![#F59E0B](https://via.placeholder.com/15/F59E0B/000000?text=+)
+- **Danger**: Red (#EF4444) ![#EF4444](https://via.placeholder.com/15/EF4444/000000?text=+)
+- **Background**: Gray (#F3F4F6) ![#F3F4F6](https://via.placeholder.com/15/F3F4F6/000000?text=+)
 
-### Componentes
+### Ícones e Assets
+O projeto utiliza o logo do Vite como placeholder:
+- **Logo Principal**: `/vite.svg` <img src="/vite.svg" alt="Vite Logo" width="20" height="20" style="vertical-align: middle;">
+- **Ícones**: Lucide React para ícones da interface
+- **Favicon**: Configurado no `index.html`
+
+### Componentes Visuais
 - **MetricCard**: Cartões de métricas com ícones e mudanças percentuais
 - **StatusBadge**: Badges de status com cores dinâmicas
 - **Navigation**: Sistema de tabs responsivo
+- **Charts**: Gráficos integrados com Recharts
+
+### Screenshots das Funcionalidades
+
+**Dashboard Overview:**
+- Status do bot em tempo real (Running/Paused/Stopped)
+- Métricas: Portfolio ($12,543), P&L ($234), Return (15.8%)
+- Gráfico de performance das últimas 24h
+- Indicadores de confiança ML (84.7%)
+
+**Trading Panel:**
+- Controles: Max Allocation, Risk per Trade, Long Term Hold %
+- Tabela de trades recentes com P&L
+- Gráfico de pizza mostrando Win Rate (68.5%)
+
+**ML Model Analytics:**
+- Métricas circulares: Confidence, Accuracy, Precision, Recall
+- Barras de importância das features (RSI, MACD, etc.)
+- Status de treinamento do modelo
 
 ## 📊 Dados Simulados
 
@@ -148,7 +204,12 @@ const fetchPortfolioData = async () => {
 ```
 trading-dashboard/
 ├── public/
-│   └── vite.svg
+│   ├── vite.svg           # Logo do projeto
+│   └── docs/
+│       └── images/        # Screenshots da aplicação (adicionar)
+│           ├── dashboard-overview.png
+│           ├── trading-panel.png
+│           └── ml-analytics.png
 ├── src/
 │   ├── assets/
 │   │   └── react.svg
@@ -163,6 +224,35 @@ trading-dashboard/
 ├── vite.config.ts      # Configuração Vite
 └── README.md
 ```
+
+## 📷 Como Adicionar Screenshots
+
+Para adicionar suas próprias capturas de tela da aplicação:
+
+1. **Execute a aplicação localmente**
+   ```bash
+   npm run dev
+   ```
+
+2. **Tire screenshots das diferentes seções**
+   - Dashboard Overview (aba Overview)
+   - Trading Panel (aba Trading)
+   - ML Analytics (aba ML Model)
+
+3. **Salve as imagens**
+   ```bash
+   # Crie a pasta de documentação
+   mkdir -p public/docs/images
+
+   # Adicione suas screenshots
+   # dashboard-overview.png
+   # trading-panel.png
+   # ml-analytics.png
+   ```
+
+4. **Atualize as URLs no README**
+   - Substitua os caminhos das imagens pelos arquivos reais
+   - Use caminhos relativos: `./public/docs/images/nome-da-imagem.png`
 
 ## 🔧 Scripts Disponíveis
 
@@ -204,4 +294,31 @@ Para suporte, envie um email para suporte@gcs.com ou abra uma issue no GitHub.
 
 ---
 
-⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!
+## 🌐 English Version
+
+# 🚀 GCS Trading Bot Dashboard
+
+A modern and responsive dashboard for monitoring and controlling cryptocurrency trading bots, built with React, TypeScript and Tailwind CSS.
+
+### 🎯 Key Features
+- **Real-time Bot Monitoring** - Live status tracking and performance metrics
+- **Trading Controls** - Risk management and allocation settings
+- **ML Model Analytics** - Feature importance and model performance
+- **Interactive Charts** - Portfolio performance and win rate visualization
+
+### 🛠️ Tech Stack
+React 19 • TypeScript • Tailwind CSS 4 • Recharts • Vite
+
+### 🚀 Quick Start
+```bash
+git clone https://github.com/your-username/trading-dashboard.git
+cd trading-dashboard
+npm install
+npm run dev
+```
+
+Visit `http://localhost:5173` to see the dashboard in action.
+
+---
+
+⭐ If this project was helpful to you, consider giving it a star on GitHub!
