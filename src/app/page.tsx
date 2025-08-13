@@ -4,86 +4,149 @@ import Actions from "./components/Actions";
 import OrdersList from "./components/OrdersList";
 
 export default function Home() {
+  const MIN_PROFIT_PERCENTAGE = 0.05; // 5%
+  const CURRENT_BTC_PRICE = 49382.4; // From InfoCard "Valor Atual do BTC"
+
   const openOrders = [
     {
       id: 1,
-      text: "Compra: 0.01 BTC | Quant: 0.005 | Venda: 5% | Data: 12/12/23",
+      purchaseBtc: 0.01,
+      quantity: 0.005,
+      targetProfitPercentage: 0.05,
+      date: "12/12/23",
     },
     {
       id: 2,
-      text: "Compra: 0.02 BTC | Quant: 0.01 | Venda: 3% | Data: 11/12/23",
+      purchaseBtc: 0.02,
+      quantity: 0.01,
+      targetProfitPercentage: 0.03,
+      date: "11/12/23",
     },
     {
       id: 3,
-      text: "Compra: 0.008 BTC | Quant: 0.002 | Venda: 7% | Data: 10/12/23",
+      purchaseBtc: 0.008,
+      quantity: 0.002,
+      targetProfitPercentage: 0.07,
+      date: "10/12/23",
     },
     {
       id: 4,
-      text: "Compra: 0.015 BTC | Quant: 0.007 | Venda: 4% | Data: 09/12/23",
+      purchaseBtc: 0.015,
+      quantity: 0.007,
+      targetProfitPercentage: 0.04,
+      date: "09/12/23",
     },
     {
       id: 5,
-      text: "Compra: 0.03 BTC | Quant: 0.015 | Venda: 2.5% | Data: 08/12/23",
+      purchaseBtc: 0.3,
+      quantity: 0.015,
+      targetProfitPercentage: 0.2,
+      date: "08/12/23",
     },
     {
       id: 6,
-      text: "Compra: 0.012 BTC | Quant: 0.006 | Venda: 6% | Data: 07/12/23",
+      purchaseBtc: 0.012,
+      quantity: 0.006,
+      targetProfitPercentage: 0.06,
+      date: "07/12/23",
     },
     {
       id: 7,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 8,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 9,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 10,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 11,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 12,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 13,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.025,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 14,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 15,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 16,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 17,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 18,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 19,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
     {
       id: 20,
-      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      purchaseBtc: 0.029,
+      quantity: 0.012,
+      targetProfitPercentage: 0.035,
+      date: "06/12/23",
     },
   ];
 
@@ -227,17 +290,19 @@ export default function Home() {
             chartLineDataKey="value"
             imageHeight="h-70"
           />
-          <OrdersList title="Lista de ordens fechadas" orders={closedOrders} />
         </div>
 
         <div className="w-2/5 flex flex-col gap-4">
           <Actions />
-          <OrdersList
-            title="Lista de ordens abertas"
-            orders={openOrders}
-            max_height={588}
-          />
+          <OrdersList title="Lista de ordens fechadas" orders={closedOrders} />
         </div>
+      </div>
+      <div>
+        <OrdersList
+          title="Lista de ordens abertas"
+          orders={openOrders}
+          max_height={588}
+        />
       </div>
     </div>
   );
