@@ -59,7 +59,31 @@ export default function Home() {
     },
     {
       id: 14,
-      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 15,
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 16,
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 17,
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 18,
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 19,
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 20,
+      text: "Compra: 0.029 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
     },
   ];
 
@@ -102,6 +126,36 @@ export default function Home() {
     },
     {
       id: 7,
+      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-4.3%",
+    },
+    {
+      id: 8,
+      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-4.3%",
+    },
+    {
+      id: 9,
+      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-4.3%",
+    },
+    {
+      id: 10,
+      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-4.3%",
+    },
+    {
+      id: 11,
+      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-4.3%",
+    },
+    {
+      id: 12,
       text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
       isClosed: true,
       profit: "-4.3%",
@@ -155,8 +209,8 @@ export default function Home() {
         <InfoCard title="Valor Atual do BTC" value="$49.382,40" />
       </div>
 
-      <div className="flex flex-wrap md:flex-nowrap gap-4 mb-4">
-        <div className="md:w-3/5 flex flex-col gap-4">
+      <div className="flex flex-nowrap gap-4 mb-4">
+        <div className="w-3/5 flex flex-col gap-4">
           <ChartCard
             title="Gráfico do progresso da carteira"
             chartType="line"
@@ -176,19 +230,14 @@ export default function Home() {
           <OrdersList title="Lista de ordens fechadas" orders={closedOrders} />
         </div>
 
-        <div className="md:w-2/5 flex flex-col gap-4">
+        <div className="w-2/5 flex flex-col gap-4">
           <Actions />
           <OrdersList
             title="Lista de ordens abertas"
             orders={openOrders}
-            max_height={80}
+            max_height={588}
           />
         </div>
-      </div>
-
-      <div className="flex gap-4">
-        <div className="w-full md:w-3/5"></div>
-        <div className="w-full md:w-2/5"></div>
       </div>
     </div>
   );

@@ -18,10 +18,12 @@ const OrdersList: React.FC<OrdersListProps> = ({
   orders,
   max_height = 256,
 }) => {
+  const containerStyle = { maxHeight: `${max_height}px` };
+
   return (
     <div className="bg-gray-800 p-4 rounded-lg shadow-md">
       <h3 className="text-sm text-gray-400 mb-2">{title}</h3>
-      <div className={`space-y-2 overflow-y-auto max-h-[${max_height}px]`}>
+      <div className="space-y-2 overflow-y-auto" style={containerStyle}>
         {orders.map((order) => (
           <div
             key={order.id}
