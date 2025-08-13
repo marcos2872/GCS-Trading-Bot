@@ -1,103 +1,195 @@
-import Image from "next/image";
+import InfoCard from "./components/InfoCard";
+import ChartCard from "./components/ChartCard";
+import Actions from "./components/Actions";
+import OrdersList from "./components/OrdersList";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const openOrders = [
+    {
+      id: 1,
+      text: "Compra: 0.01 BTC | Quant: 0.005 | Venda: 5% | Data: 12/12/23",
+    },
+    {
+      id: 2,
+      text: "Compra: 0.02 BTC | Quant: 0.01 | Venda: 3% | Data: 11/12/23",
+    },
+    {
+      id: 3,
+      text: "Compra: 0.008 BTC | Quant: 0.002 | Venda: 7% | Data: 10/12/23",
+    },
+    {
+      id: 4,
+      text: "Compra: 0.015 BTC | Quant: 0.007 | Venda: 4% | Data: 09/12/23",
+    },
+    {
+      id: 5,
+      text: "Compra: 0.03 BTC | Quant: 0.015 | Venda: 2.5% | Data: 08/12/23",
+    },
+    {
+      id: 6,
+      text: "Compra: 0.012 BTC | Quant: 0.006 | Venda: 6% | Data: 07/12/23",
+    },
+    {
+      id: 7,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 8,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 9,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 10,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 11,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 12,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 13,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+    {
+      id: 14,
+      text: "Compra: 0.025 BTC | Quant: 0.012 | Venda: 3.5% | Data: 06/12/23",
+    },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const closedOrders = [
+    {
+      id: 1,
+      text: "Compra: 0.009 BTC | Venda: 0.0095 BTC | Lucro: ",
+      isClosed: true,
+      profit: "+5.5%",
+    },
+    {
+      id: 2,
+      text: "Compra: 0.018 BTC | Venda: 0.0175 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-2.7%",
+    },
+    {
+      id: 3,
+      text: "Compra: 0.007 BTC | Venda: 0.0078 BTC | Lucro: ",
+      isClosed: true,
+      profit: "+11.4%",
+    },
+    {
+      id: 4,
+      text: "Compra: 0.014 BTC | Venda: 0.0146 BTC | Lucro: ",
+      isClosed: true,
+      profit: "+4.2%",
+    },
+    {
+      id: 5,
+      text: "Compra: 0.028 BTC | Venda: 0.029 BTC | Lucro: ",
+      isClosed: true,
+      profit: "+3.5%",
+    },
+    {
+      id: 6,
+      text: "Compra: 0.011 BTC | Venda: 0.0117 BTC | Lucro: ",
+      isClosed: true,
+      profit: "+6.3%",
+    },
+    {
+      id: 7,
+      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
+      isClosed: true,
+      profit: "-4.3%",
+    },
+  ];
+
+  // Generate mock data for 60 minutes
+  const generateMinuteData = (
+    startValue: number,
+    fluctuation: number,
+    isPrice: boolean = false,
+  ) => {
+    const data = [];
+    let currentValue = startValue;
+    for (let i = 0; i < 60; i++) {
+      const date = new Date();
+      date.setMinutes(date.getMinutes() - (59 - i)); // Go back 59 minutes from now
+      const time = date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+
+      if (isPrice) {
+        currentValue += (Math.random() - 0.5) * fluctuation * 100; // Larger fluctuation for price
+      } else {
+        currentValue += (Math.random() - 0.5) * fluctuation; // Smaller fluctuation for value
+      }
+
+      // Ensure values don't go below a certain threshold for price/value
+      if (isPrice) {
+        currentValue = Math.max(currentValue, 30000); // BTC price won't go below 30k
+      } else {
+        currentValue = Math.max(currentValue, 1000); // Wallet value won't go below 1k
+      }
+
+      data.push({ time, value: parseFloat(currentValue.toFixed(2)) });
+    }
+    return data;
+  };
+
+  const walletProgressData = generateMinuteData(1200, 10);
+  const btcChartData = generateMinuteData(45000, 50, true);
+
+  return (
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-4 gap-4 mb-4">
+        <InfoCard title="Valor na Carteira" value="$1.234,56" />
+        <InfoCard title="Valor em BTC" value="0.025 BTC" />
+        <InfoCard title="Saldo Acumulado" value="$3000.00" />
+        <InfoCard title="Valor Atual do BTC" value="$49.382,40" />
+      </div>
+
+      <div className="flex flex-wrap md:flex-nowrap gap-4 mb-4">
+        <div className="md:w-3/5 flex flex-col gap-4">
+          <ChartCard
+            title="Gráfico do progresso da carteira"
+            chartType="line"
+            chartData={walletProgressData}
+            chartDataKey="time"
+            chartLineDataKey="value"
+            imageHeight="h-69"
+          />
+          <ChartCard
+            title="Gráfico BTC"
+            chartType="line"
+            chartData={btcChartData}
+            chartDataKey="time"
+            chartLineDataKey="value"
+            imageHeight="h-70"
+          />
+          <OrdersList title="Lista de ordens fechadas" orders={closedOrders} />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+
+        <div className="md:w-2/5 flex flex-col gap-4">
+          <Actions />
+          <OrdersList
+            title="Lista de ordens abertas"
+            orders={openOrders}
+            max_height={80}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
+
+      <div className="flex gap-4">
+        <div className="w-full md:w-3/5"></div>
+        <div className="w-full md:w-2/5"></div>
+      </div>
     </div>
   );
 }
