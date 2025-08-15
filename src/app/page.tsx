@@ -1,231 +1,24 @@
+"use client";
 import InfoCard from "./components/InfoCard";
 import ChartCard from "./components/ChartCard";
 import Actions from "./components/Actions";
 import OrdersList from "./components/OrdersList";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  OpenPosition,
+  TradeHistory,
+  TradingData,
+  WalletBalance,
+} from "./api/bot-infos/interface";
+import { formatUSDTCustom } from "./utils/usdtFormmat";
+import OpenOrdersList from "./components/OpenOrdersList";
 
 export default function Home() {
-  const MIN_PROFIT_PERCENTAGE = 0.05; // 5%
-  const CURRENT_BTC_PRICE = 49382.4; // From InfoCard "Valor Atual do BTC"
+  const [openOrders, setOpenOrders] = useState<TradeHistory[]>([]);
+  const [closedOrders, setClosedOrders] = useState<TradeHistory[]>([]);
+  const [tradeHistory, setTradeHistory] = useState<TradeHistory[]>([]);
+  const [walletBalances, setWalleBalances] = useState<WalletBalance[]>([]);
 
-  const openOrders = [
-    {
-      id: 1,
-      purchaseBtc: 0.01,
-      quantity: 0.005,
-      targetProfitPercentage: 0.05,
-      date: "12/12/23",
-    },
-    {
-      id: 2,
-      purchaseBtc: 0.02,
-      quantity: 0.01,
-      targetProfitPercentage: 0.03,
-      date: "11/12/23",
-    },
-    {
-      id: 3,
-      purchaseBtc: 0.008,
-      quantity: 0.002,
-      targetProfitPercentage: 0.07,
-      date: "10/12/23",
-    },
-    {
-      id: 4,
-      purchaseBtc: 0.015,
-      quantity: 0.007,
-      targetProfitPercentage: 0.04,
-      date: "09/12/23",
-    },
-    {
-      id: 5,
-      purchaseBtc: 0.3,
-      quantity: 0.015,
-      targetProfitPercentage: 0.2,
-      date: "08/12/23",
-    },
-    {
-      id: 6,
-      purchaseBtc: 0.012,
-      quantity: 0.006,
-      targetProfitPercentage: 0.06,
-      date: "07/12/23",
-    },
-    {
-      id: 7,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 8,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 9,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 10,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 11,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 12,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 13,
-      purchaseBtc: 0.025,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 14,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 15,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 16,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 17,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 18,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 19,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-    {
-      id: 20,
-      purchaseBtc: 0.029,
-      quantity: 0.012,
-      targetProfitPercentage: 0.035,
-      date: "06/12/23",
-    },
-  ];
-
-  const closedOrders = [
-    {
-      id: 1,
-      text: "Compra: 0.009 BTC | Venda: 0.0095 BTC | Lucro: ",
-      isClosed: true,
-      profit: "+5.5%",
-    },
-    {
-      id: 2,
-      text: "Compra: 0.018 BTC | Venda: 0.0175 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-2.7%",
-    },
-    {
-      id: 3,
-      text: "Compra: 0.007 BTC | Venda: 0.0078 BTC | Lucro: ",
-      isClosed: true,
-      profit: "+11.4%",
-    },
-    {
-      id: 4,
-      text: "Compra: 0.014 BTC | Venda: 0.0146 BTC | Lucro: ",
-      isClosed: true,
-      profit: "+4.2%",
-    },
-    {
-      id: 5,
-      text: "Compra: 0.028 BTC | Venda: 0.029 BTC | Lucro: ",
-      isClosed: true,
-      profit: "+3.5%",
-    },
-    {
-      id: 6,
-      text: "Compra: 0.011 BTC | Venda: 0.0117 BTC | Lucro: ",
-      isClosed: true,
-      profit: "+6.3%",
-    },
-    {
-      id: 7,
-      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-4.3%",
-    },
-    {
-      id: 8,
-      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-4.3%",
-    },
-    {
-      id: 9,
-      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-4.3%",
-    },
-    {
-      id: 10,
-      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-4.3%",
-    },
-    {
-      id: 11,
-      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-4.3%",
-    },
-    {
-      id: 12,
-      text: "Compra: 0.023 BTC | Venda: 0.022 BTC | Prejuízo: ",
-      isClosed: true,
-      profit: "-4.3%",
-    },
-  ];
-
-  // Generate mock data for 60 minutes
   const generateMinuteData = (
     startValue: number,
     fluctuation: number,
@@ -263,12 +56,51 @@ export default function Home() {
   const walletProgressData = generateMinuteData(1200, 10);
   const btcChartData = generateMinuteData(45000, 50, true);
 
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch("/api/bot-infos?mode=test");
+      const infos: TradingData = await response.json();
+
+      setOpenOrders(
+        infos.trade_history.filter(
+          ({ order_type, status }) =>
+            status === "CLOSED" && order_type === "buy",
+        ),
+      );
+      setClosedOrders(
+        infos.trade_history.filter(
+          ({ order_type, status }) =>
+            status === "CLOSED" && order_type === "sell",
+        ),
+      );
+      setWalleBalances(infos.wallet_balances);
+      setTradeHistory(infos.trade_history);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const wallet = useMemo(() => {
+    const btc = walletBalances?.find(({ asset }) => asset === "BTC");
+    const usdt = walletBalances?.find(({ asset }) => asset === "USDT");
+    return {
+      btc: `${btc ? btc.free : 0}BTC`,
+      usdt: formatUSDTCustom(usdt?.free || ""),
+      btc_looked: btc ? btc.locked : 0,
+      usdt_looked: formatUSDTCustom(usdt?.locked || ""),
+    };
+  }, [walletBalances]);
+
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-4 gap-4 mb-4">
-        <InfoCard title="Valor na Carteira" value="$1.234,56" />
-        <InfoCard title="Valor em BTC" value="0.025 BTC" />
-        <InfoCard title="Saldo Acumulado" value="$3000.00" />
+        <InfoCard title="Valor na Carteira" value={wallet.usdt} />
+        <InfoCard title="Valor em BTC" value={wallet.btc} />
+        {/*<InfoCard title="Saldo Acumulado" value="$3000.00" />*/}
         <InfoCard title="Valor Atual do BTC" value="$49.382,40" />
       </div>
 
@@ -298,11 +130,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <OrdersList
-          title="Lista de ordens abertas"
-          orders={openOrders}
-          max_height={588}
-        />
+        <OpenOrdersList data={openOrders} />
       </div>
     </div>
   );
